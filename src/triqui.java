@@ -1,10 +1,26 @@
 
 
 import java.awt.Color;
+import java.awt.Dimension;
+/*
+ Nombre: Johan Ossa Serna 
+ Codigo: 2257642-2724
+ Ultima Actualizacion: 01 de mayo de 2023
+ Version: 1.01
+	En el proyecto realizado 
+	Desarrollé un juego de tic tac toe utilizando el framework Jframe e instalé un plugin en Eclipse: Windowbuilder y SwingDesigner.
+	Este juego se basa en unos movimientos aleatorios de la computadora, 
+	lo que lo hace interesante y desafiante para el jugador. Además, se puede 
+	jugar contra otro jugador, la aplicacion cuenta con 3 botones para ver las instrucciones de juego y los datos del programador,y otro para jugar de nuevo,
+ 	el programador en este caso es Johan Ossa Serna con código 225762-2724. Para la interfaz gráfica, se utilizaron las clases JLabel y JButton para mostrar el texto
+ 	y los botones necesarios para que el jugador pueda interactuar con el juego.
+*/
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -13,30 +29,32 @@ public class triqui extends javax.swing.JFrame {
     
     // Declaración de variables
     int juegos;          // Número de partidas jugadas
-    int jx;              // Contador de victorias del jugador X
-    int jo;              // Contador de victorias del jugador O
+    int px;              // Contador de victorias del jugador X
+    int po;              // Contador de victorias del jugador O
     int control = 1;     // Controla quién está jugando (1 = jugador X, 2 = jugador O)
-    int contax = 0;      // Contador de jugadas ganadoras del jugador X
-    int contao = 0;      // Contador de jugadas ganadoras del jugador O
+    int countx = 0;      // Contador de jugadas ganadoras del jugador X
+    int counto = 0;      // Contador de jugadas ganadoras del jugador O
     int conempate = 0;   // Contador de partidas empatadas
     int matriz[][] = new int[3][3];  // Tablero de juego representado como una matriz
     int multijugador = 3; // Indica si se juega contra el PC (0 = no, 1 = sí)
     int contjuegos = 0;  // Contador de partidas jugadas
     int numjuegos;       // Número de partidas a jugar
-    JButton Jbinstrucciones,Jbprogramador;
+    JButton Jbinstrucciones,Jbprogramador; //Creamos los Jbutton para asignar al menú
     
     public triqui() {
-        super("Triki");
+        super("Juego Triqui 3x3");
         setSize(8000,8000);
         setLocationRelativeTo(null);
         setLayout(null);
         crearGUI();
-        //getContentPane().setBackground(getBackground(Color.yellow));
+        this.getContentPane().setBackground(Color.YELLOW); 
+        Image icono  = new ImageIcon(getClass().getResource("imagenes/triqui logo.jpg")).getImage();
+        setIconImage(icono);
         initComponents();
 
         // Se pregunta si se quiere jugar contra el PC y se ingresa el número de partidas a jugar
-        multijugador = JOptionPane.showConfirmDialog(null, "Quieres jugar contra el PC?");
-        numjuegos = Integer.parseInt(JOptionPane.showInputDialog("escriba el numero de partidas"));
+        multijugador = JOptionPane.showConfirmDialog(null, "¿Deseas jugar contra el PC?");
+        numjuegos = Integer.parseInt(JOptionPane.showInputDialog("digita el numero de partidas"));
 
         try {
 
@@ -58,27 +76,29 @@ public class triqui extends javax.swing.JFrame {
 
 
 	private void crearGUI() {
-		// TODO Auto-generated method stub
+		// Crear botón "Instrucciones"
 		Jbinstrucciones = new JButton("Instrucciones");
-		Jbinstrucciones.setBounds(425, 320, 120, 30);
+		Jbinstrucciones.setBounds(430, 329, 112, 26);
+		Jbinstrucciones.setBackground(Color.RED);
+		Jbinstrucciones.setForeground(Color.WHITE);
 		Jbinstrucciones.addActionListener(new ActionListener() {
 			
-			@Override
+			@Override  // Agregar evento de click al botón "Instrucciones"
 			public void actionPerformed(ActionEvent e) {
-				evento_Jbinstrucciones();
+				evento_Jbinstrucciones(); // Llamar al método que maneja el evento del botón
 				
 			}
 		});
 		playagain = new javax.swing.JButton();
-		add(Jbinstrucciones);
-		
+		add(Jbinstrucciones);   // Agregar los botones a la interfaz gráfica
+		 // Crear botón "Datos"
 		Jbprogramador = new JButton("Datos");
-		Jbprogramador.setBounds(290, 320, 120, 30);
+		Jbprogramador.setBounds(300, 329, 112, 26);
 		Jbprogramador.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				evento_Jbprogramador();
+				evento_Jbprogramador(); // Llamar al método que maneja el evento del botón
 				
 			}
 
@@ -87,7 +107,7 @@ public class triqui extends javax.swing.JFrame {
 				
 			}
 		});
-		add(Jbprogramador);
+		add(Jbprogramador);  // Agregar los botones a la interfaz gráfica
 	}
 
 	public void evento_Jbinstrucciones() {
@@ -97,100 +117,102 @@ public class triqui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     private void initComponents() {
-        
-        b2 = new javax.swing.JButton();
-        b1 = new javax.swing.JButton();
-        b3 = new javax.swing.JButton();
+    	// Método generado automáticamente por la interfaz gráfica
+    	// Crear los botones para el juego
+        b2 = new javax.swing.JButton(); // Método generado automáticamente por la interfaz gráfica
+        b1 = new javax.swing.JButton(); // Método generado automáticamente por la interfaz gráfica
+        b3 = new javax.swing.JButton();   // Método generado automáticamente por la interfaz gráfica
         b6 = new javax.swing.JButton();
         b5 = new javax.swing.JButton();
         b4 = new javax.swing.JButton();
         b9 = new javax.swing.JButton();
         b8 = new javax.swing.JButton();
         b7 = new javax.swing.JButton();
+        // Crear las etiquetas de los jugadores y el puntaje
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        // Crear los campos de texto para el puntaje
         puntao = new javax.swing.JTextField();
         puntax1 = new javax.swing.JTextField();
-        empate = new javax.swing.JTextField();
+        empate = new javax.swing.JTextField();     // Crear la etiqueta de "EMPATE"
         jLabel5 = new javax.swing.JLabel();
       
     
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+	    // Configurar los botones para manejar los eventos de clic
 		b2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b2ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b1ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b3ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b6.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b6ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b5.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b5ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b4ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b9.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b9ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b8.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b8ActionPerformed(evt);
 			}
 		});
-
+	    // Configurar los botones para manejar los eventos de clic
 		b7.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				b7ActionPerformed(evt);
 			}
 		});
 
-		jLabel1.setText("JUGADOR X");
+		jLabel1.setText("Jugador: X"); // Establece el texto del JLabel para indicar que el jugador 1 es X
+		jLabel2.setText("Jugador: O"); // Establece el texto del JLabel para indicar que el jugador 2 es O
 
-		jLabel2.setText("JUGADOR O");
+		jLabel3.setFont(new java.awt.Font("Arial", 0, 28)); // Establece la fuente del JLabel para mostrar "PUNTAJE" en negrita
+		jLabel3.setText("PUNTAJE "); // Establece el texto del JLabel para mostrar "PUNTAJE"
+		jLabel3.setForeground(Color.RED); // Establece el color de primer plano del JLabel en rojo
 
-		jLabel3.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
-		jLabel3.setText("PUNTAJE ");
+		jLabel4.setFont(new java.awt.Font("Helvetica", 100, 17)); // Establece la fuente del JLabel para mostrar "Triqui"
+		jLabel4.setText("<html>TicTac<font color='red'>Toe</font><br></html>"); // Establece el texto del JLabel para mostrar "Tic tac toe,añadí html"
+		
+		
+		puntao.setEnabled(false); // Deshabilita el botón de puntuación para el jugador O
+		puntax1.setEnabled(false); // Deshabilita el botón de puntuación para el jugador X
+		empate.setEnabled(false); // Deshabilita el botón de empate
 
-		jLabel4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-		jLabel4.setText("TRIQUI");
-
-		puntao.setEnabled(false);
-
-		puntax1.setEnabled(false);
-
-		empate.setEnabled(false);
-
-		jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-		jLabel5.setText("EMPATE");
+		jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // Establece la fuente del JLabel para mostrar "EMPATE"
+		jLabel5.setText("EMPATE"); // Establece el texto del JLabel para mostrar "EMPATE"
 
 		playagain.setText("PLAY AGAIN");
 		playagain.addActionListener(new java.awt.event.ActionListener() {
@@ -199,8 +221,8 @@ public class triqui extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane()); //Crear un objeto GroupLayout con el panel principal.
+		getContentPane().setLayout(layout); //Establecer el GroupLayout como diseño del panel principal.
 		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addGap(40, 40, 40)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
@@ -271,7 +293,7 @@ public class triqui extends javax.swing.JFrame {
 										layout.createSequentialGroup().addContainerGap()
 												.addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGap(18, 18, 18)))
+												.addGap(20, 20, 20)))
 								.addGroup(
 										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 												.addGroup(layout.createSequentialGroup().addGroup(layout
@@ -411,8 +433,8 @@ public class triqui extends javax.swing.JFrame {
 		puntao.setText(null);
 		empate.setText(null);
 
-		contax = 0;
-		contao = 0;
+		countx = 0;
+		counto = 0;
 		conempate = 0;
 		contjuegos = 0;
 
@@ -448,35 +470,35 @@ public class triqui extends javax.swing.JFrame {
 			b9.setText("");
 			b9.setEnabled(false);
 
-			JOptionPane.showMessageDialog(null, "JUEGO FINALIZADO");
+			JOptionPane.showMessageDialog(null, "SE ACABO EL JUEGO");
 		}
 
 	}
 
 	private void contx() {
-		contax = contax + 1;
-		String x = Integer.toString(contax);
+		countx = countx + 1;
+		String x = Integer.toString(countx);
 		puntax1.setText(x);
 
 	}
 
 	private void conto() {
-		contao = contao + 1;
-		String o = Integer.toString(contao);
+		counto = counto + 1;
+		String o = Integer.toString(counto);
 		puntao.setText(o);
 
 	}
 
 	private void linea1() {
 		if (matriz[0][0] + matriz[0][1] + matriz[0][2] == 252) {
-			JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 			contjuegos = contjuegos + 1;
 			contx();
 			borra();
 			cuentadejuegos();
 		}
 		if (matriz[0][0] + matriz[0][1] + matriz[0][2] == 720) {
-			JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 			contjuegos = contjuegos + 1;
 			conto();
 			borra();
@@ -487,14 +509,14 @@ public class triqui extends javax.swing.JFrame {
 
 	private void linea2() {
 		if (matriz[1][0] + matriz[1][1] + matriz[1][2] == 252) {
-			JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 			contjuegos = contjuegos + 1;
 			contx();
 			borra();
 			cuentadejuegos();
 		}
 		if (matriz[1][0] + matriz[1][1] + matriz[1][2] == 720) {
-			JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 			contjuegos = contjuegos + 1;
 			conto();
 			borra();
@@ -504,14 +526,14 @@ public class triqui extends javax.swing.JFrame {
 
 	private void linea3() {
 		if (matriz[2][0] + matriz[2][1] + matriz[2][2] == 252) {
-			JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 			contjuegos = contjuegos + 1;
 			contx();
 			borra();
 			cuentadejuegos();
 		}
 		if (matriz[2][0] + matriz[2][1] + matriz[2][2] == 720) {
-			JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+			JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 			contjuegos = contjuegos + 1;
 			conto();
 			borra();
@@ -526,14 +548,14 @@ public class triqui extends javax.swing.JFrame {
 			acu = acu + matriz[x][0];
 
 			if (acu == 252) {
-				JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 				contjuegos = contjuegos + 1;
 				contx();
 				borra();
 				cuentadejuegos();
 			}
 			if (acu == 720) {
-				JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 				contjuegos = contjuegos + 1;
 				conto();
 				borra();
@@ -549,14 +571,14 @@ public class triqui extends javax.swing.JFrame {
 			acu = acu + matriz[x][1];
 
 			if (acu == 252) {
-				JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 				contjuegos = contjuegos + 1;
 				contx();
 				borra();
 				cuentadejuegos();
 			}
 			if (acu == 720) {
-				JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 				contjuegos = contjuegos + 1;
 				conto();
 				borra();
@@ -572,14 +594,14 @@ public class triqui extends javax.swing.JFrame {
 			acu = acu + matriz[x][2];
 
 			if (acu == 252) {
-				JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 				contjuegos = contjuegos + 1;
 				contx();
 				borra();
 				cuentadejuegos();
 			}
 			if (acu == 720) {
-				JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 				contjuegos = contjuegos + 1;
 				conto();
 				borra();
@@ -594,14 +616,14 @@ public class triqui extends javax.swing.JFrame {
 
 			acu = acu + matriz[x][x];
 			if (acu == 252) {
-				JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 				contjuegos = contjuegos + 1;
 				contx();
 				borra();
 				cuentadejuegos();
 			}
 			if (acu == 720) {
-				JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 				contjuegos = contjuegos + 1;
 				conto();
 				borra();
@@ -623,14 +645,14 @@ public class triqui extends javax.swing.JFrame {
 			cont = cont - 1;
 
 			if (acu == 252) {
-				JOptionPane.showMessageDialog(null, "JUGADOR X GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR X GANA");
 				contjuegos = contjuegos + 1;
 				contx();
 				borra();
 				cuentadejuegos();
 			}
 			if (acu == 720) {
-				JOptionPane.showMessageDialog(null, "JUGADOR O GANO");
+				JOptionPane.showMessageDialog(null, "JUGADOR O GANA");
 				contjuegos = contjuegos + 1;
 				conto();
 				borra();
@@ -663,7 +685,7 @@ public class triqui extends javax.swing.JFrame {
 		linea4();
 		lineaformx();
 		cuentadejuegos();
-	}// GEN-LAST:event_b1ActionPerformed
+	}// GEN-event1
 
 	private void b2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_b2ActionPerformed
 
@@ -885,8 +907,8 @@ public class triqui extends javax.swing.JFrame {
 	 private void playagainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 	        borracompleto();
-	        multijugador = JOptionPane.showConfirmDialog(null, "Quieres jugar contra el PC?");
-	        numjuegos = Integer.parseInt(JOptionPane.showInputDialog("escriba el numero de partidas"));
+	        multijugador = JOptionPane.showConfirmDialog(null, "Deseas jugar contra el PC?");
+	        numjuegos = Integer.parseInt(JOptionPane.showInputDialog("Digita el numero de partidas"));
 
 	    }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -897,7 +919,7 @@ public class triqui extends javax.swing.JFrame {
 		triqui eb = new triqui();
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Metal".equals(info.getName())) {
+				if ("Windows Classic".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
@@ -920,15 +942,36 @@ public class triqui extends javax.swing.JFrame {
 		});
 	}
 
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton b1;
+	private javax.swing.JButton b2;
+	private javax.swing.JButton b3;
+	private javax.swing.JButton b4;
+	private javax.swing.JButton b5;
+	private javax.swing.JButton b6;
+	private javax.swing.JButton b7;
+	private javax.swing.JButton b8;
+	private javax.swing.JButton b9;
+	private javax.swing.JTextField empate;
+	private javax.swing.JButton playagain;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JTextField puntao;
+	private javax.swing.JTextField puntax1;
 	public void devolverjuego() {
 		int randomNum = 0;
 		boolean encontro = false;
-		System.out.println("el ramdom");
+		//System.out.println("el ramdom");
+		 // Ciclo "do-while" que se repetirá hasta que se encuentre un botón disponible para colocar la marca.
 		do {
 			randomNum = 1 + (int) (Math.random() * 9);
-			System.out.println("el ramdom es " + randomNum);
-
+			//System.out.println("el ramdom es " + randomNum);
+	        // Se Utiliza una estructura "switch" para ejecutar un código diferente dependiendo del valor de "randomNum".
 			switch (randomNum) {
+            // Verifica si el botón "b1" está habilitado para ser utilizado.
 			case 1:
 				empatejuego();
 				if (b1.isEnabled() == true) {
@@ -944,12 +987,13 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
+                // Verifica si el botón "b2" está habilitado para ser utilizado.
+	            // En el caso de que "randomNum" sea igual a 2 (y así sucesivamente para los casos siguientes).
 			case 2:
 				empatejuego();
 				if (b2.isEnabled() == true) {
 					b2.setText("O");
-
-					matriz[0][1] = 240;
+					matriz[0][1] = 240;  // Se le asigna el valor 240 a la posición [0][0] de la matriz "matriz".
 					control = 1;
 					b2.setEnabled(false);
 					encontro = true;
@@ -961,6 +1005,7 @@ public class triqui extends javax.swing.JFrame {
 
 				}
 				break;
+                // Verifica si el botón "b3" está habilitado para ser utilizado.
 			case 3:
 				empatejuego();
 				if (b3.isEnabled() == true) {
@@ -977,7 +1022,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
-
+                // Verifica si el botón "b4" está habilitado para ser utilizado.
 			case 4:
 				empatejuego();
 				if (b4.isEnabled() == true) {
@@ -993,6 +1038,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
+                // Verifica si el botón "b5" está habilitado para ser utilizado.
 			case 5:
 				empatejuego();
 				if (b5.isEnabled() == true) {
@@ -1008,7 +1054,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
-
+                // Verifica si el botón "b6" está habilitado para ser utilizado.
 			case 6:
 				empatejuego();
 				if (b6.isEnabled() == true) {
@@ -1024,6 +1070,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
+                // Verifica si el botón "b7" está habilitado para ser utilizado.
 			case 7:
 				empatejuego();
 				if (b7.isEnabled() == true) {
@@ -1039,6 +1086,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
+                // Verifica si el botón "b8" está habilitado para ser utilizado.
 			case 8:
 				empatejuego();
 				if (b8.isEnabled() == true) {
@@ -1054,6 +1102,7 @@ public class triqui extends javax.swing.JFrame {
 					linea6();
 				}
 				break;
+                // Verifica si el botón "b9" está habilitado para ser utilizado.
 			case 9:
 				empatejuego();
 				if (b9.isEnabled() == true) {
@@ -1075,24 +1124,6 @@ public class triqui extends javax.swing.JFrame {
 
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton b1;
-	private javax.swing.JButton b2;
-	private javax.swing.JButton b3;
-	private javax.swing.JButton b4;
-	private javax.swing.JButton b5;
-	private javax.swing.JButton b6;
-	private javax.swing.JButton b7;
-	private javax.swing.JButton b8;
-	private javax.swing.JButton b9;
-	private javax.swing.JTextField empate;
-	private javax.swing.JButton playagain;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel4;
-	private javax.swing.JLabel jLabel5;
-	private javax.swing.JTextField puntao;
-	private javax.swing.JTextField puntax1;
-	// End of variables declaration//GEN-END:variables
+
+	
 }
